@@ -27,67 +27,82 @@ tmdb_image = './assets/tmdb_home.jpeg'
     #endregion
 
 
+##---------------------------- cards ----------------------------##
+
+## tmdb source card
+card1 = dbc.Card( 
+        [
+            dbc.CardBody(
+                [
+                    html.H4(id='card_title_1', children=['Source'], className='card-title',
+                            style=CARD_TEXT_STYLE),
+                    html.P(id='card_text_1', children=['Metadata from 5000 films scraped from TMDb: The Movie Database'], style=CARD_TEXT_STYLE),
+                ]
+            )
+        ]
+    )
+
+## tmdb relevancy card
+card2 = dbc.Card(
+        [
+            dbc.CardBody(
+                [
+                    html.H4('Relevancy', className='card-title', style=CARD_TEXT_STYLE),
+                    html.P('Entries from the early 1990s to 2017, and predominantly first released in English', style=CARD_TEXT_STYLE),
+                ]
+            ),
+        ]
+    )
+
+## tmdb key metrics card
+card3 = dbc.Card(
+        [
+            dbc.CardBody(
+                [
+                    html.H4('Key Metrics', className='card-title', style=CARD_TEXT_STYLE),
+                    html.P('Popularity (based on user interaction), and Vote Average (based on user votes)', style=CARD_TEXT_STYLE),
+                ]
+            ),
+        ]
+
+    )
+
+## tmdb size card
+card4 = dbc.Card(
+        [
+            dbc.CardBody(
+                [
+                    html.H4('Size', className='card-title', style=CARD_TEXT_STYLE),
+                    html.P('Data split across two csv files with over 20,000 data entries each', style=CARD_TEXT_STYLE),
+                ]
+            ),
+        ]
+    )
+
+
 ##---------------------------- rows ----------------------------##
 
-## four cards row
-content_first_row = dbc.Row([ ## row 1
+## tmdb cards row
+card_row = dbc.Row([
     dbc.Col(
-        dbc.Card( ## card 1
-            [
-                dbc.CardBody(
-                    [
-                        html.H4(id='card_title_1', children=['Source'], className='card-title',
-                                style=CARD_TEXT_STYLE),
-                        html.P(id='card_text_1', children=['Metadata from 5000 films scraped from TMDb: The Movie Database'], style=CARD_TEXT_STYLE),
-                    ]
-                )
-            ]
-        ),
+        card1,
         md=3
     ),
     dbc.Col(
-        dbc.Card( ## card 2
-            [
-                dbc.CardBody(
-                    [
-                        html.H4('Relevancy', className='card-title', style=CARD_TEXT_STYLE),
-                        html.P('Entries from the early 1990s to 2017, and predominantly first released in English', style=CARD_TEXT_STYLE),
-                    ]
-                ),
-            ]
-
-        ),
+        card2,
         md=3
     ),
     dbc.Col(
-        dbc.Card( ## card 3
-            [
-                dbc.CardBody(
-                    [
-                        html.H4('Key Metrics', className='card-title', style=CARD_TEXT_STYLE),
-                        html.P('Popularity (based on user interaction), and Vote Average (based on user votes)', style=CARD_TEXT_STYLE),
-                    ]
-                ),
-            ]
-
-        ),
+        card3,
         md=3
     ),
     dbc.Col(
-        dbc.Card( ## card 4
-            [
-                dbc.CardBody(
-                    [
-                        html.H4('Size', className='card-title', style=CARD_TEXT_STYLE),
-                        html.P('Data split across two csv files with over 20,000 data entries each', style=CARD_TEXT_STYLE),
-                    ]
-                ),
-            ]
-        ),
+        card4,
         md=3
     )
 ])
 
+## content goals row
 content_goals = dbc.Row([
     html.Hr(),
     html.H2('Goals for this project', style=TEXT_STYLE),
@@ -97,28 +112,23 @@ content_goals = dbc.Row([
     html.H4('Developmental', style=GENRE_TEXT_STYLE),
     html.P('Identify and answer guiding research questions, including: what factors affect how well a film is recieved, and can we predict anything about a film before its release?', style=GENRE_TEXT_STYLE),
     html.P('Extract and present interesting information from a large dataset, converting it into a digestible form', style=GENRE_TEXT_STYLE),
-
     ## personal goals
     html.H4('Personal', style=GENRE_TEXT_STYLE),
     html.P("Develop better data communication skills in a way that interests me", style=GENRE_TEXT_STYLE),
     html.P("Produce a final product which showcases my familiarity with data visualization tools", style=GENRE_TEXT_STYLE),
-
-
-
 ])
 
-
+## title image
 image_row1 = dbc.Row([
         html.Div(html.Img(src=slate_image, style={'height':'70%', 'width':'70%'}), 
                  style={'textAlign':'center'}),], style={'align-items':'center', 'display':'flex'})
 
-
+## tmdb image
 image_row2 = dbc.Row([
         html.Div(html.Img(src=tmdb_image, style={'height':'90%', 'width':'90%'}), 
                  style={'textAlign':'center'}),], style={'align-items':'center', 'display':'flex', 'margin-bottom':'2rem'})
 
-
-
+## combining all dataset rows
 this_dataset = dbc.Row([
     html.Hr(),
     html.H2('The dataset', style=TEXT_STYLE),
@@ -128,10 +138,10 @@ this_dataset = dbc.Row([
     html.Br(),
     html.Br(),
     html.Br(),
-    content_first_row
-
+    card_row
 ])
 
+## project extensions row
 project_extensions = dbc.Row([
     html.Hr(),
     html.H2('Future extensions', style=TEXT_STYLE),
@@ -145,10 +155,7 @@ project_extensions = dbc.Row([
     html.H4('Divulging new trends', style=GENRE_TEXT_STYLE),
     html.P("Go deeper into film research, and push beyond finding trends within a single dataset", style=GENRE_TEXT_STYLE),
     html.P('Uncover more trends regarding film analytics, considering factors which are not present in the current database', style=GENRE_TEXT_STYLE),
-
 ])
-
-
 
 
 ##---------------------------- layout ----------------------------##
@@ -163,8 +170,4 @@ layout = html.Div([
     html.Br(),
     project_extensions
 ])
-
-
-##---------------------------- callbacks ----------------------------##
-
 
