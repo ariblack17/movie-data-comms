@@ -25,16 +25,26 @@ Will be updated later to get cleaned up and include more information (including 
 
 ![Production companies for the top films.](screenshots/top-films-production.png)
 
-
-
 # Genres
 *Are there any genres which perform better than others?*
-
+![Ratings by genre.](screenshots/genres-box.png)
+![Revenue by genre.](screenshots/genres-z.png)
 
 # Cast
 *How important is it to have a highly accomplished cast?*
-
+![Actors appearing in multiple films with the highest revenue.](screenshots/cast.png)
+![Actors appearing in multiple films with the highest profit.](screenshots/cast-2.png)
 
 # Other analytics
 *What are some other interesting and more complex analyses we can gather from the database?*
+![Films with the highest budgets.](screenshots/other-budget.png)
+![The budget and revenue across all films.](screenshots/other-budget-revenue.png)
+![The number of films in each genre.](screenshots/other-genre.png)
+
+![Numerical features heatmap.](screenshots/other-correlation.png)
+![Plotting explained variance ratio for PCA, and PCA.](screenshots/other-clusters.png)
+![K-Means cluster analysis.](screenshots/other-clusters-2.png)
+
+
+
 
