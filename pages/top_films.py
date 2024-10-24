@@ -27,11 +27,12 @@ dash.register_page(__name__, path='/top_films')
 
 ##----------------------------------- define elements -----------------------------------##
 
-## graph 11, lollipop popularity
     #region
-graph11 = mpl_to_plotly(fig11) ## directly convert
-y11 = [ x.get_text() for x in ax11.get_yticklabels() ]
-graph11.update_layout(width=1100, height=750, title_x=0.7,
+
+## lollipop popularity chart
+graph11 = mpl_to_plotly(fig11)                                      ## directly convert from matplotlib
+y11 = [ x.get_text() for x in ax11.get_yticklabels() ]              ## get tick labels from mpl figure
+graph11.update_layout(width=1100, height=750, title_x=0.7,          ## stylize plotly figure
                      margin=dict(l=10, r=20, t=50, b=20),
                      yaxis=dict(tickmode='array', 
                                 tickvals=[i for i in range(0, 50)],
@@ -39,56 +40,53 @@ graph11.update_layout(width=1100, height=750, title_x=0.7,
                      
                      )
 graph11.update_yaxes(type='category')
-# graph11.show();
 
     #endregion
 
-## graph 12, lollipop rating
+
     #region
 
-graph12 = mpl_to_plotly(fig12) ## directly convert
-y12 = [ x.get_text() for x in ax12.get_yticklabels() ]
-graph12.update_layout(width=1100, height=750, title_x=0.7,
+## lollipop average rating chart
+graph12 = mpl_to_plotly(fig12)                                      ## directly convert from matplotlib
+y12 = [ x.get_text() for x in ax12.get_yticklabels() ]              ## get tick labels from mpl figure
+graph12.update_layout(width=1100, height=750, title_x=0.7,          ## stylize plotly figure
                      margin=dict(l=10, r=20, t=50, b=20),
                      yaxis=dict(tickmode='array', 
                                 tickvals=[i for i in range(0, 50)],
                                 ticktext=y12),
                      
                      )
-# graph12.show();
 
     #endregion
 
-## graph 13a, lollipop top (pop)
+
     #region
 
+## lollipop population chart, top films
 ## recreate color code
 for i in range(len(colors_pop50)): 
     if colors_pop50[i] == 'k':
-        # colors_pop50[i] = 'rgb(100,100,100)'
         colors_pop50[i] = '#E3E3FF'
     else:
         colors_pop50[i] = '#76A7B2'
         
-## create figure
+## generate figure from previous chart
 graph13a = go.Figure(graph11)
-# graph13a = graph12.copy()
 
-## add traces
+## add traces (highlight top films)
 graph13a.add_trace(go.Scatter(
         x=graph11.data[0]['x'],
         y=graph11.data[0]['y'],
         mode='markers',
         marker=dict(color=colors_pop50), 
-        # labels={x:'pop', y:'title'},
     ))
-
 
     #endregion
 
-## graph 13b, lollipop top (rating)
+
     #region
 
+## lollipop average rating chart, top films
 ## recreate color code
 for i in range(len(colors_vote50)):
     if colors_vote50[i] == 'k':
@@ -96,11 +94,10 @@ for i in range(len(colors_vote50)):
     else:
         colors_vote50[i] = '#76A7B2'
 
-        
-## create figure
+## generate figure from previous chart
 graph13b = go.Figure(graph12)
 
-## add traces
+## add traces (highlight top films)
 graph13b.add_trace(go.Scatter(
         x=graph12.data[0]['x'],
         y=graph12.data[0]['y'],
@@ -110,13 +107,12 @@ graph13b.add_trace(go.Scatter(
 
     #endregion
 
-## table 13, table top
+
     #region
 
-# df_popvote50
+## top films table
 table13 = dash_table.DataTable(data=df_popvote50.to_dict('records'), 
                                columns = [{"name": i, 'id': i} for i in df_popvote50.columns if i!='id'],
-                               # columns=[{'id': c, 'name': c} for c in df.columns if c!="Pressure"]
                                 style_data={
                                     'whiteSpace': 'normal',
                                     'height': 'auto',
@@ -134,32 +130,31 @@ table13 = dash_table.DataTable(data=df_popvote50.to_dict('records'),
 
     #endregion
 
-## graph 14a, bar top budget
+
     #region
 
-graph14a = mpl_to_plotly(fig14a) ## directly convert
-y14a = [ x.get_text() for x in ax14a.get_yticklabels() ]
-graph14a.update_layout(width=650, height=600, title_x=0.9,
+## bar budget top films
+graph14a = mpl_to_plotly(fig14a)                                    ## directly convert from matplotlib
+y14a = [ x.get_text() for x in ax14a.get_yticklabels() ]            ## get tick labels from mpl figure
+graph14a.update_layout(width=650, height=600, title_x=0.9,          ## stylize plotly figure
                      margin=dict(l=10, r=20, t=50, b=20),
                      yaxis=dict(tickmode='array', 
                                 tickvals=[i for i in range(0, 13)],
                                 ticktext=y14a,
-                                # tickwidth=10
-                                # ticklen=10
-                               ),
-                                
+                               ),        
                      )
+
 graph14a.update_yaxes(type='category')
 
     #endregion
 
 
-## graph 14b, bar top rev
     #region
 
-graph14b = mpl_to_plotly(fig14b) ## directly convert
-y14b = [ x.get_text() for x in ax14b.get_yticklabels() ]
-graph14b.update_layout(width=650, height=600, title_x=0.9,
+## bar average revenue top films
+graph14b = mpl_to_plotly(fig14b)                            ## directly convert from matplotlib
+y14b = [ x.get_text() for x in ax14b.get_yticklabels() ]    ## get tick labels from mpl figure
+graph14b.update_layout(width=650, height=600, title_x=0.9,  ## stylize plotly figure
                      margin=dict(l=10, r=20, t=50, b=20),
                      yaxis=dict(tickmode='array', 
                                 tickvals=[i for i in range(0, 13)],
@@ -169,9 +164,11 @@ graph14b.update_yaxes(type='category')
 
     #endregion
 
-## graph 14c, violin other budget
+
     #region
 
+## violin budget other films
+## 
 graph14c = go.Figure()
 graph14c.add_trace(go.Violin(
     x=df_nottop50["budget"][(np.abs(stats.zscore(df_nottop50['budget'])) < 3)].div(1000000),
