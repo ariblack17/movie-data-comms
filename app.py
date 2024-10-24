@@ -82,5 +82,6 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 
 if __name__=='__main__':
     print('starting dash...')
-    app.run_server(debug=True) ## debug to enable automatic reload
+    # app.run_server(debug=True) ## debug to enable automatic reload
+    app.run_server()
 
